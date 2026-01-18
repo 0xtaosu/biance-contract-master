@@ -1,0 +1,214 @@
+name: Agent Task
+description: Template for tasks to be executed by AI agents
+title: "TASK: [Brief description]"
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Metadata
+        Provide basic information about this task.
+
+  - type: input
+    id: owner
+    attributes:
+      label: Owner
+      description: GitHub username of the person responsible for this task
+      placeholder: "@username"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: task-type
+    attributes:
+      label: Task Type
+      description: Select the type of task
+      options:
+        - feature
+        - bug
+        - chore
+        - refactor
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: Priority level for this task
+      options:
+        - P0 (Critical)
+        - P1 (High)
+        - P2 (Medium)
+        - P3 (Low)
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Problem Description
+        Describe what needs to be done and why.
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement
+      description: What problem does this task solve?
+      placeholder: Describe the problem or need that this task addresses...
+    validations:
+      required: true
+
+  - type: textarea
+    id: desired-outcome
+    attributes:
+      label: Desired Outcome
+      description: What should be the result after completing this task?
+      placeholder: Describe the expected outcome...
+    validations:
+      required: true
+
+  - type: textarea
+    id: non-goals
+    attributes:
+      label: Non-Goals
+      description: What is explicitly out of scope for this task?
+      placeholder: List what should NOT be done in this task...
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Technical Details
+        Provide technical context and constraints.
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints
+      description: Any technical, business, or resource constraints
+      placeholder: List any constraints (e.g., must use existing API, cannot modify database schema, etc.)...
+    validations:
+      required: false
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Dependencies on other tasks, systems, or services
+      placeholder: List any dependencies (e.g., depends on Issue #123, requires API key from Team X, etc.)...
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Validation
+        Define how success will be measured.
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Specific, measurable criteria that must be met
+      placeholder: |
+        - [ ] Criterion 1
+        - [ ] Criterion 2
+        - [ ] Criterion 3
+    validations:
+      required: true
+
+  - type: textarea
+    id: test-expectations
+    attributes:
+      label: Test Expectations
+      description: What tests should pass or be created?
+      placeholder: |
+        - Unit tests for new functions
+        - Integration tests for API endpoints
+        - All existing tests must pass
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Deployment
+        Plan for rolling out and rolling back changes.
+
+  - type: textarea
+    id: rollout-plan
+    attributes:
+      label: Rollout Plan
+      description: How should these changes be deployed?
+      placeholder: |
+        1. Merge PR to main
+        2. Deploy to staging
+        3. Verify functionality
+        4. Deploy to production
+    validations:
+      required: true
+
+  - type: textarea
+    id: rollback-plan
+    attributes:
+      label: Rollback Plan
+      description: How to revert if something goes wrong
+      placeholder: |
+        1. Revert the PR
+        2. Redeploy previous version
+        3. Verify system is stable
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Agent Execution Policy
+        Configure guardrails for AI agent execution.
+
+  - type: textarea
+    id: allowed-paths
+    attributes:
+      label: Allowed Paths
+      description: File paths or directories the agent is allowed to modify
+      placeholder: |
+        src/
+        tests/
+        .github/
+    validations:
+      required: false
+
+  - type: textarea
+    id: forbidden-paths
+    attributes:
+      label: Forbidden Paths
+      description: File paths or directories the agent must NOT modify
+      placeholder: |
+        infra/prod/
+        .env
+        package-lock.json
+    validations:
+      required: false
+
+  - type: textarea
+    id: allowed-commands
+    attributes:
+      label: Allowed Commands
+      description: Shell commands the agent is allowed to execute
+      placeholder: |
+        npm test
+        npm run lint
+        git status
+    validations:
+      required: false
+
+  - type: input
+    id: max-pr-size
+    attributes:
+      label: Max PR Size (lines)
+      description: Maximum number of lines changed in the PR
+      placeholder: "200"
+    validations:
+      required: false
