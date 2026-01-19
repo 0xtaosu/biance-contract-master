@@ -14,14 +14,38 @@ REST API service for querying Binance Futures contract prices.
 - Rate limiting protection
 - Structured logging with Winston
 
+## Web UI
+
+A simple web interface is available in the `ui/` directory. See [ui/README.md](ui/README.md) for details.
+
+**Quick Start:**
+```bash
+# Terminal 1: Start backend API
+npm run dev
+
+# Terminal 2: Start UI
+cd ui
+npm install
+npm run dev
+```
+
+Visit `http://localhost:5173` to use the web interface.
+
 ## Tech Stack
 
+**Backend:**
 - **Framework**: Fastify 4.x
 - **Language**: TypeScript
 - **Binance Client**: @binance/connector-typescript (official SDK)
 - **Validation**: Zod
 - **Testing**: Vitest + nock
 - **Logging**: Winston
+
+**Frontend (ui/):**
+- **Framework**: React 18
+- **Language**: TypeScript
+- **Build Tool**: Vite
+- **Styling**: CSS (no framework)
 
 ## Prerequisites
 
@@ -268,6 +292,9 @@ Environment variables are validated using envalid. See `.env.example` for all av
 │   ├── unit/             # Unit tests
 │   ├── integration/      # Integration tests
 │   └── fixtures/         # Test fixtures
+├── ui/                   # Web UI (React + Vite)
+│   ├── src/              # UI source code
+│   └── README.md         # UI documentation
 ├── docs/
 │   └── decisions/        # Architecture Decision Records
 └── dist/                 # Compiled JavaScript (git-ignored)
